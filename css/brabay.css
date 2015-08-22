@@ -127,14 +127,16 @@
   60% {
     transform: rotateZ(17deg) rotateX(230deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(77deg) scale(1, 1); } }
+    transform: rotateZ(77deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail1 {
   from {
     -webkit-transform: rotateZ(17deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(17deg) rotateX(230deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(77deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(77deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail1 {
   -webkit-animation-name: tail1;
   -webkit-animation-duration: 1s;
@@ -153,14 +155,16 @@
   60% {
     transform: rotateZ(18deg) rotateX(-170deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(89deg) scale(1, 1); } }
+    transform: rotateZ(89deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail2 {
   from {
     -webkit-transform: rotateZ(18deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(18deg) rotateX(-170deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(89deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(89deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail2 {
   -webkit-animation-name: tail2;
   -webkit-animation-duration: 1s;
@@ -179,14 +183,16 @@
   60% {
     transform: rotateZ(17deg) rotateX(-240deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(92deg) scale(1, 1); } }
+    transform: rotateZ(92deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail3 {
   from {
     -webkit-transform: rotateZ(17deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(17deg) rotateX(-240deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(92deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(92deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail3 {
   -webkit-animation-name: tail3;
   -webkit-animation-duration: 1s;
@@ -205,14 +211,16 @@
   60% {
     transform: rotateZ(16deg) rotateX(-70deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(99deg) scale(1, 1); } }
+    transform: rotateZ(99deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail4 {
   from {
     -webkit-transform: rotateZ(16deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(16deg) rotateX(-70deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(99deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(99deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail4 {
   -webkit-animation-name: tail4;
   -webkit-animation-duration: 1s;
@@ -335,14 +343,16 @@
   60% {
     transform: rotateZ(197deg) rotateX(10deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(277deg) scale(1, 1); } }
+    transform: rotateZ(277deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail1-mirror {
   from {
     -webkit-transform: rotateZ(197deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(197deg) rotateX(10deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(277deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(277deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail1-mirror {
   -webkit-animation-name: tail1-mirror;
   -webkit-animation-duration: 1s;
@@ -361,14 +371,16 @@
   60% {
     transform: rotateZ(198deg) rotateX(-170deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(189deg) scale(1, 1); } }
+    transform: rotateZ(189deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail2-mirror {
   from {
     -webkit-transform: rotateZ(198deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(198deg) rotateX(-170deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(189deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(189deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail2-mirror {
   -webkit-animation-name: tail2-mirror;
   -webkit-animation-duration: 1s;
@@ -387,14 +399,16 @@
   60% {
     transform: rotateZ(197deg) rotateX(-100deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(152deg) scale(1, 1); } }
+    transform: rotateZ(152deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail3-mirror {
   from {
     -webkit-transform: rotateZ(197deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(197deg) rotateX(-100deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(152deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(152deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail3-mirror {
   -webkit-animation-name: tail3-mirror;
   -webkit-animation-duration: 1s;
@@ -413,14 +427,16 @@
   60% {
     transform: rotateZ(196deg) rotateX(-70deg) scale(1.25, 1.25); }
   to {
-    transform: rotateZ(299deg) scale(1, 1); } }
+    transform: rotateZ(299deg) scale(1, 1);
+    opacity: 0.5; } }
 @-webkit-keyframes tail4-mirror {
   from {
     -webkit-transform: rotateZ(196deg) scale(1.5, 1.5); }
   60% {
     -webkit-transform: rotateZ(196deg) rotateX(-70deg) scale(1.25, 1.25); }
   to {
-    -webkit-transform: rotateZ(299deg) scale(1, 1); } }
+    -webkit-transform: rotateZ(299deg) scale(1, 1);
+    opacity: 0.5; } }
 #brabayContainer .tail4-mirror {
   -webkit-animation-name: tail4-mirror;
   -webkit-animation-duration: 1s;

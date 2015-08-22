@@ -26,16 +26,24 @@
 }
 
 // final scale = 1,1 
-@mixin bayMixin ($name, $initDeg, $midRot, $finalDeg ) {
+@mixin bayMixin ($name, $initDeg, $midRot, $finalDeg, $tail) {
     @keyframes #{$name} {
-        from { transform: rotateZ($initDeg) scale(1.5, 1.5); }
-        60%  { transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
-        to   { transform: rotateZ($finalDeg) scale(1, 1); }
+        from    { transform: rotateZ($initDeg) scale(1.5, 1.5); }
+        60%     { transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
+        to      { transform: rotateZ($finalDeg) scale(1, 1); 
+                    @if $tail == true {
+                        opacity: 0.5;
+                    }
+                }
     }
     @-webkit-keyframes #{$name} {
-        from { -webkit-transform: rotateZ($initDeg) scale(1.5, 1.5); }
-        60%  { -webkit-transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
-        to   { -webkit-transform: rotateZ($finalDeg) scale(1, 1); }
+        from    { -webkit-transform: rotateZ($initDeg) scale(1.5, 1.5); }
+        60%     { -webkit-transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
+        to      { -webkit-transform: rotateZ($finalDeg) scale(1, 1); 
+                    @if $tail == true {
+                        opacity: 0.5;
+                    }
+                }
     }
     
     #brabayContainer .#{$name} {
@@ -54,19 +62,19 @@
 }
 
 
-@include bayMixin(head1, 17deg, 270deg,  25deg);
-@include bayMixin(head2, 16deg, 220deg,  37deg);
-@include bayMixin(head3, 18deg, -180deg, 42deg);
-@include bayMixin(head4, 19deg, 120deg,  63deg);
-@include bayMixin(tail1, 17deg, 230deg,  77deg);
-@include bayMixin(tail2, 18deg, -170deg, 89deg);
-@include bayMixin(tail3, 17deg, -240deg, 92deg);
-@include bayMixin(tail4, 16deg, -70deg,  99deg);
-@include bayMixin(head1-mirror, 197deg, 50deg,  145deg);
-@include bayMixin(head2-mirror, 196deg, 280deg,  137deg);
-@include bayMixin(head3-mirror, 198deg, -180deg, 242deg);
-@include bayMixin(head4-mirror, 199deg, 20deg,  163deg);
-@include bayMixin(tail1-mirror, 197deg, 10deg,  277deg);
-@include bayMixin(tail2-mirror, 198deg, -170deg, 189deg);
-@include bayMixin(tail3-mirror, 197deg, -100deg, 152deg);
-@include bayMixin(tail4-mirror, 196deg, -70deg,  299deg);
+@include bayMixin(head1, 17deg, 270deg,  25deg, false);
+@include bayMixin(head2, 16deg, 220deg,  37deg, false);
+@include bayMixin(head3, 18deg, -180deg, 42deg, false);
+@include bayMixin(head4, 19deg, 120deg,  63deg, false);
+@include bayMixin(tail1, 17deg, 230deg,  77deg, true);
+@include bayMixin(tail2, 18deg, -170deg, 89deg, true);
+@include bayMixin(tail3, 17deg, -240deg, 92deg, true);
+@include bayMixin(tail4, 16deg, -70deg,  99deg, true);
+@include bayMixin(head1-mirror, 197deg, 50deg,  145deg, false);
+@include bayMixin(head2-mirror, 196deg, 280deg,  137deg, false);
+@include bayMixin(head3-mirror, 198deg, -180deg, 242deg, false);
+@include bayMixin(head4-mirror, 199deg, 20deg,  163deg, false);
+@include bayMixin(tail1-mirror, 197deg, 10deg,  277deg, true);
+@include bayMixin(tail2-mirror, 198deg, -170deg, 189deg, true);
+@include bayMixin(tail3-mirror, 197deg, -100deg, 152deg, true);
+@include bayMixin(tail4-mirror, 196deg, -70deg,  299deg, true);
