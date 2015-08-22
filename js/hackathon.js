@@ -113,21 +113,36 @@ User.prototype.gcI485 = null;
 
 var hackathon = angular.module('hackathon', ['ngSanitize', 'ngAnimate']);
 
-HackathonController = function($scope) {
-    this.user = new User();
-    this.isSubmitting = false;
-};
+/** @constructor */
+HackathonController = function($scope, $q) {};
+/** @type {User} */
+HackathonController.prototype.user = new User();
+/** @type {boolean} */
+HackathonController.prototype.isSubmitting = false;
+/** @type {string} */
+HackathonController.prototype.css = '';
+/** @type {string} */
+HackathonController.prototype.cssMirror = '';
 
+/** @type {Function} */
 HackathonController.prototype.submit = function() {
+    if (this.isSubmitting) {
+        return;
+    }
+
+    this.isSubmitting = true;
     console.log(this.user);
+    this.isSubmitting = false;
 
-    // current visa needed
-    
-    // green card kick-off
+    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
+    var css = aniArr[Math.floor(Math.random() * aniArr.length)];
+    var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
 
+    this.css = css;
+    this.cssMirror = cssMirror;
 };
 
-hackathon.controller('hackathonCtrl', ['$scope', HackathonController]);
+hackathon.controller('hackathonCtrl', ['$scope', '$q', HackathonController]);
 
 //hackathon.directive('hackathonDir', [function() {
 //    return {
