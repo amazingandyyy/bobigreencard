@@ -1,0 +1,16 @@
+{  
+   "timeline":[  
+      {  
+         "serial":"01",
+         "title":"PERM",
+         "processing_time":"< 3 months",
+         "description":"the system used for obtaining labor certification and is the first step for certain foreign nationals in obtaining an employment-based immigrant visa ('green card')"
+      },
+      {  
+         "serial":"02",
+         "title":"I-140",
+         "processing_time":"Premium - 15 days",
+         "description":"The employer applies on the alien's behalf to obtain a visa number"
+      }
+   ]
+}
