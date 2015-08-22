@@ -118,12 +118,62 @@ HackathonController = function($scope) {
     this.isSubmitting = false;
 };
 
+HackathonController.prototype.greencard = function(user) {
+    var education = user.education;
+    var experience = user.experience;
+    var nationality = user.nationality;
+
+    var results = [];
+    results.push({  
+         "title":"綠卡 - PERM - 蒐集資料給律師",
+         "processing_time":"看人，約 1 個月",
+         "description":"蒐集之前學歷，經歷資訊，與先前經歷的推薦信。"
+    });
+
+    results.push({  
+         "title":"綠卡 - PERM - Laber Certification",
+         "processing_time":"1 到 3 個月",
+         "description":"把預定工作內容丟給勞工局，申請綠卡職缺的 Laber Certification"
+    });
+
+    results.push({  
+         "title":"綠卡 - PERM - Recruiting",
+         "processing_time":"4 到 6 個月",
+         "description":"公司公告勞工局核可之職缺資訊，在公開人力市場徵才"
+    });
+
+    results.push({  
+         "title":"綠卡 - PERM - 送件",
+         "processing_time":"6 個月",
+         "description":"律師送出 PERM 的申請書"
+    });
+
+    results.push({  
+         "title":"綠卡 - PERM - 稽核（不一定會發生）",
+         "processing_time":"6 到 9 個月",
+         "description":"有約 30% 的機率被勞工局稽核到，如果被稽核到，PERM 的時程會延長 6 到 9 個月"
+    });
+
+    results.push({
+         "title":"綠卡 - I-140",
+         "processing_time":"3 到 6 個月",
+         "description":"通過後，配偶就可以工作了"
+    });
+
+    results.push({  
+         "title":"綠卡 - I-485",
+         "processing_time":"3 到 6 個月",
+         "description":"通過後就有綠卡了"
+    });
+
+    return results;
+}
+
 HackathonController.prototype.submit = function() {
     console.log(this.user);
 
-    // current visa needed
-    
-    // green card kick-off
+    var timeline = HackathonController.prototype.greencard(this.user);
+
 
 };
 
