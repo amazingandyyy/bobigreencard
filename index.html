@@ -22,12 +22,43 @@
       <div class="w-col w-col-4">
         <div class="w-form">
           <form id="email-form" name="email-form" data-name="Email Form">
-            <h1>Emigrate to America</h1>
-            <label for="name">Name:</label>
-            <input class="w-input" id="name" type="text" placeholder="Enter your name" name="name" data-name="Name">
-            <label for="email">Email Address:</label>
-            <input class="w-input" id="email" type="email" placeholder="Enter your email address" name="email" data-name="Email" required="required">
-            <input class="w-button submit-button" type="submit" value="Submit" data-wait="Please wait...">
+            <h1>綠卡保庇</h1>
+            <center><h3>輸入您的資料，找到您的綠卡地圖與資源</h3></center>
+            <input class="w-input" id="name" type="text" placeholder="姓名" name="name" data-name="Name">
+            <input class="w-input" id="email" type="email" placeholder="Email 地址" name="email" data-name="Email" required="required">
+            <select class="w-input" id="current_status">
+              <option value="placeholder" disabled='disabled' selected='selected'>現在身份</option>
+              <option value="F1">學生（F1 - 學生簽）</option>
+              <option value="L1">專業人士（L1 - 公司內調簽）</option>
+              <option value="L1">專業人士配偶（L2 - 公司內調配偶簽）</option>
+              <option value="OPT">畢業後實習（OPT - 畢業後實習簽）</option>
+              <option value="H1B">工作簽（H1B - 工作簽）</option>
+              <option value="E">想來創業（E1/E2 - 創業簽）</option>
+              <option value="E">想來投資（投資簽）</option>
+            </select>
+            <select class="w-input" id="education">
+              <option value="placeholder" disabled='disabled' selected='selected'>學歷</option>
+              <option value="high_school">高中/職與以下</option>
+              <option value="college">大專</option>
+              <option value="master">碩士</option>
+              <option value="phd">博士或以上</option>
+            </select>
+            <select class="w-input" id="experience">
+              <option value="placeholder" disabled='disabled' selected='selected'>工作經驗</option>
+              <option value="5">五年以下</option>
+              <option value="5+">五年以上</option>
+              <option value="management">管理階層</option>
+            </select>
+            <select class="w-input" id="nationality">
+              <option value="placeholder" disabled='disabled' selected='selected'>國籍</option>
+              <option value="taiwan">台灣</option>
+              <option value="china">中國</option>
+              <option value="india">印度</option>
+              <option value="philippines">菲律賓</option>
+              <option value="mexico">墨西哥</option>
+              <option value="others">其他</option>
+            </select>
+            <input class="w-button submit-button" type="submit" value="送出" data-wait="Please wait...">
           </form>
           <div class="w-form-done">
             <p>Thank you! Your submission has been received!</p>
