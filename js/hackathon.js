@@ -139,7 +139,7 @@ HackathonController.prototype.submit = function() {
     var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
 
     this.css = css;
-    this.cssMirror = cssMirror;
+    this.cssMirror = cssMirror + '-mirror';
 };
 
 hackathon.controller('hackathonCtrl', ['$scope', '$q', HackathonController]);
