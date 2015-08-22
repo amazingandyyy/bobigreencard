@@ -119,7 +119,7 @@ HackathonController = function($scope) {
 };
 
 HackathonController.prototype.submit = function() {
-
+    console.log(this.user);
 };
 
 hackathon.controller('hackathonCtrl', ['$scope', HackathonController]);
