@@ -13,7 +13,6 @@
   <link rel="stylesheet" type="text/css" href="css/brabay.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/timeline1.css">
-  <script type="text/javascript" src="js/modernizr.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
   <script type="text/javascript" src="js/angular.min.js"></script>
@@ -28,7 +27,7 @@
         <div class="w-form">
           <form id="email-form" name="email-form" data-name="Email Form">
             <h1>綠卡擲杯</h1>
-            <center><h3>擲杯問神明，看看你綠卡啥時下來 XD</h3></center>
+            <center><h3>擲杯問神明，看看你辦綠卡要多久，要經過哪些步驟 XD</h3></center>
             <select class="w-input" id="current_status">
               <option value="placeholder" disabled='disabled' selected='selected'>現在身份</option>
               <option value="F1">學生（F1 - 學生簽）</option>
@@ -61,7 +60,7 @@
               <option value="mexico">墨西哥</option>
               <option value="others">其他</option>
             </select>
-            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" data-wait="Please wait..." ng-disabled="ctrl.isSubmitting" ng-click="ctrl.submit()">
+            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" ng-disabled="ctrl.isSubmitting" ng-click="ctrl.submit()">
             <div id="brabayContainer">
                 <p class="bay"></p>
                 <p class="bay mirror"></p>
@@ -107,7 +106,6 @@
 
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
   <script type="text/javascript">
         var submitBtn = $("#submitBtn"),
