@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAGA,gBAAiB;EACb,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EAGb,qBAAK;IACD,OAAO,EAAE,KAAK;IACd,KAAK,EAAE,KAAK;IACZ,MAAM,EAAE,KAAK;IACb,gBAAgB,EAAE,2vDAA2vD;IAC7wD,iBAAiB,EAAE,SAAS",
-"sources": ["brabay.scss"],
-"names": [],
-"file": "brabay.css"
-}
