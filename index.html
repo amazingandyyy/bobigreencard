@@ -19,13 +19,13 @@
   <script type="text/javascript" src="js/angular-animate.min.js"></script>
   <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
 </head>
-<body data-ng-app="hackathon">
+<body>
   <div class="w-section first-section" ng-controller="hackathonCtrl as ctrl">
     <div class="w-row">
       <div class="w-col w-col-4"></div>
       <div class="w-col w-col-4">
         <div class="w-form">
-          <form id="email-form" name="email-form" data-name="Email Form">
+          <form id="email-form" name="email-form" data-name="Email Form" ng-submit="ctrl.submit()">
             <h1>綠卡擲杯</h1>
             <center><h3>擲杯問神明，看看你辦綠卡要多久，要經過哪些步驟 XD</h3></center>
             <select class="w-input" id="current_status" ng-model="ctrl.user.status">
@@ -60,10 +60,10 @@
               <option value="mexico">墨西哥</option>
               <option value="others">其他</option>
             </select>
-            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" ng-disabled="ctrl.isSubmitting" ng-click="ctrl.submit()">
+            <input class="w-button submit-button" type="submit" value="擲杯" ng-disabled="ctrl.isSubmitting">
             <div id="brabayContainer">
-                <p class="bay"></p>
-                <p class="bay mirror"></p>
+                <p class="bay" ng-class="ctrl.css"></p>
+                <p class="bay mirror" ng-class="ctrl.cssMirror"></p>
             </div>
           </form>
           <div class="w-form-done">
@@ -99,28 +99,13 @@
           <span class="time-wrapper"><span class="time">Up to 6 months</span></span>
         </div>
         <div class="desc">The employer applies on the alien's behalf to obtain a visa number</div>
-   0
+      </div>
     </li>
 
   </ul>
 
 
-  <script type="text/javascript" src="js/jquery.min.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-  <script type="text/javascript">
-        var submitBtn = $("#submitBtn"),
-            brabayAnimation = function() {
-                $("#brabayContainer .bay").each(function(idx, elm){
-                    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'],
-                        className = aniArr[Math.floor(Math.random() * aniArr.length)];
-
-                    className = ($(elm).hasClass('mirror')) ? className + '-mirror mirror bay' : className + ' bay';
-                    $(elm).removeClass();
-                    $(elm).addClass(className);
-                }); 
-            }
-            submitBtn.click(brabayAnimation);
-  </script>
   <script type="text/javascript" src="js/hackathon.js"></script>
 </body>
 </html>
