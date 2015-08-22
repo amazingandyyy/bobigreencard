@@ -124,7 +124,6 @@ HackathonController.prototype.css = '';
 /** @type {string} */
 HackathonController.prototype.cssMirror = '';
 
-<<<<<<< HEAD
 HackathonController.prototype.greencard = function(user) {
     var education = user.education;
     var experience = user.experience;
@@ -191,6 +190,27 @@ HackathonController.prototype.submit = function() {
     var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
     var css = aniArr[Math.floor(Math.random() * aniArr.length)];
     var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
+    // current visa needed
+    var result = [];
+    
+    switch (this.user.status) {
+        case 'F1':
+            console.log("F1");
+            result.push({
+                "title":"簽證 - OPT - 實習",
+                "processing_time":"1個月",
+                "description":"畢業時申請，可立即工作"
+            });
+        case 'OPT':
+            console.log("OPT");
+            result.push({
+                "title":"簽證 - H1b - 工作",
+                "processing_time":"4 到 6 個月",
+                "description":"每年4年接受申請，10月開始工作"
+            });
+    }
+
+    // green card kick-off
 
     this.css = css;
     this.cssMirror = cssMirror + '-mirror';
