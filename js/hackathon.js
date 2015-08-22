@@ -175,22 +175,7 @@ HackathonController.prototype.greencard = function(user) {
     return results;
 }
 
-/** @type {Function} */
-HackathonController.prototype.submit = function() {
-    if (this.isSubmitting) {
-        return;
-    }
-
-    this.isSubmitting = true;
-    console.log(this.user);
-    this.isSubmitting = false;
-
-    var timeline = HackathonController.prototype.greencard(this.user);
-
-    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
-    var css = aniArr[Math.floor(Math.random() * aniArr.length)];
-    var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
-    // current visa needed
+HackathonController.prototype.visa = function() {
     var result = [];
     
     switch (this.user.status) {
@@ -209,6 +194,25 @@ HackathonController.prototype.submit = function() {
                 "description":"每年4年接受申請，10月開始工作"
             });
     }
+    return result;
+}
+
+/** @type {Function} */
+HackathonController.prototype.submit = function() {
+    if (this.isSubmitting) {
+        return;
+    }
+
+    this.isSubmitting = true;
+    console.log(this.user);
+    this.isSubmitting = false;
+
+    var timeline = HackathonController.prototype.greencard(this.user);
+
+    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
+    var css = aniArr[Math.floor(Math.random() * aniArr.length)];
+    var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
+    // current visa needed
 
     // green card kick-off
 
