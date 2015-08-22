@@ -120,6 +120,11 @@ HackathonController = function($scope) {
 
 HackathonController.prototype.submit = function() {
     console.log(this.user);
+
+    // current visa needed
+    
+    // green card kick-off
+
 };
 
 hackathon.controller('hackathonCtrl', ['$scope', HackathonController]);
