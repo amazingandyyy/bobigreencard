@@ -92,7 +92,13 @@ a {
   border-style: solid;
   border-color: black;
   border-radius: 50px;
+  outline: none;
 }
+
+.submit-button:hover {
+  opacity: 0.6;
+}
+
 .green-card {
   display: block;
   width: 350px;
