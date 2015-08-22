@@ -124,6 +124,8 @@ HackathonController.prototype.css = '';
 /** @type {string} */
 HackathonController.prototype.cssMirror = '';
 
+HackathonController.prototype.timelineData = [];
+
 HackathonController.prototype.greencard = function(user) {
     var education = user.education;
     var experience = user.experience;
@@ -215,6 +217,8 @@ HackathonController.prototype.submit = function() {
     // current visa needed
 
     // green card kick-off
+
+    this.timelineData = this.visa().concat(this.greencard(this.user));
 
     this.css = css;
     this.cssMirror = cssMirror + '-mirror';

@@ -19,8 +19,8 @@
   <script type="text/javascript" src="js/angular-animate.min.js"></script>
   <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
 </head>
-<body>
-  <div class="w-section first-section" ng-controller="hackathonCtrl as ctrl">
+<body ng-controller="hackathonCtrl as ctrl">
+  <div class="w-section first-section">
     <div class="w-row">
       <div class="w-col w-col-4"></div>
       <div class="w-col w-col-4">
@@ -78,30 +78,18 @@
     </div>
   </div>
 
-  <ul class="timeline">
+  <ul class="timeline"  data-ng-if="ctrl.timelineData.length > 0">
 
     <!-- Item 1 -->
-    <li>
+    <li ng-repeat="timeline in ctrl.timelineData">
       <div class="direction-r">
         <div class="flag-wrapper">
-          <span class="flag">PERM</span>
-          <span class="time-wrapper"><span class="time">3 - 6 months</span></span>
+          <span class="flag">{{timeline.title}}</span>
+          <span class="time-wrapper"><span class="time">{{timeline.processing_time}}</span></span>
         </div>
-        <div class="desc">a hairstyle produced by setting the hair in waves or curls and then treating it with chemicals so that the style lasts for several months.</div>
+        <div class="desc">{{timeline.description}}</div>
       </div>
     </li>
-
-    <!-- Item 2 -->
-    <li>
-      <div class="direction-l">
-        <div class="flag-wrapper">
-          <span class="flag">I-140</span>
-          <span class="time-wrapper"><span class="time">Up to 6 months</span></span>
-        </div>
-        <div class="desc">The employer applies on the alien's behalf to obtain a visa number</div>
-      </div>
-    </li>
-
   </ul>
 
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
