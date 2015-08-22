@@ -58,7 +58,11 @@
               <option value="mexico">墨西哥</option>
               <option value="others">其他</option>
             </select>
-            <input class="w-button submit-button" type="submit" value="送出" data-wait="Please wait...">
+            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" data-wait="Please wait...">
+            <div id="brabayContainer">
+                <p class="bay"></p>
+                <p class="bay mirror"></p>
+            </div>
           </form>
           <div class="w-form-done">
             <p>Thank you! Your submission has been received!</p>
@@ -94,5 +98,18 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+  <script type="text/javascript">
+        var submitBtn = $("#submitBtn"),
+            brabayAnimation = function() {
+                $("#brabayContainer .bay").each(function(idx, elm){
+                    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'],
+                        className = aniArr[Math.floor(Math.random() * aniArr.length)];
+
+                    className = ($(elm).hasClass('mirror')) ? className + '-mirror' : className;
+                    $(elm).addClass(className);
+                }); 
+            }
+            submitBtn.click(brabayAnimation);
+  </script>
 </body>
 </html>
