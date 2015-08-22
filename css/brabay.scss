@@ -1,83 +1,18 @@
 // run this command to generate css file.
 // sass ./css3_ani.scss --update
 
-@mixin keyframesMixin ($name, $x, $y) {
-    @keyframes #{$name} {
-        0%   {opacity: 0; transform:translate($x, $y); }
-        10%  {opacity: 1; transform:translate($x, $y); }
-        45%  {opacity: 1; transform:translate(0, 0); }
-        55%  {opacity: 1; transform:translate(0, 0); }
-        99%  {opacity: 1; transform:translate(-$x, -$y); }
-        100% {opacity: 0; transform:translate(-$x, -$y); }
-    }
-    @-webkit-keyframes #{$name} {
-        0%   {opacity: 0; -webkit-transform:translate($x, $y); }
-        10%  {opacity: 1; -webkit-transform:translate($x, $y); }
-        45%  {opacity: 1; -webkit-transform:translate(0, 0); }
-        55%  {opacity: 1; -webkit-transform:translate(0, 0); }
-        99%  {opacity: 1; -webkit-transform:translate(-$x, -$y); }
-        100% {opacity: 0; -webkit-transform:translate(-$x, -$y); }
-    }
-
-    #animationWrapper .anim-#{$name} {
-        -webkit-animation-name: $name;
-        animation-name: $name;
-    }
-}
-
-
-#digit1 {
-    -webkit-animation-duration: 1s;
-    -webkit-animation-iteration-count: 1;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-}
-
-#digit2 {
-    -webkit-animation-duration: 1s;
-    -webkit-animation-iteration-count: 1;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-}
-
-#animationWrapper {
+#brabayContainer {
     display: block;
-    width:100px;
-    height:200px;
-}
+    width: 400px;
+    height: 400px;
 
-.wrapper {
-    display:block;
-    width:100px;
-    height:100px;
-    border:1px solid transparent;
-    box-shadow:inset 0 0 9px rgba(0,0,0,0.9);
-    border-radius: 50px;
-    overflow:hidden;
-    transform:translateZ(0);
-}
 
-/* immediate child only */
-.wrapper>p {
-    display:block;
-    width:60px;
-    height:60px;
-    padding:34px 20px;
-    text-align:center;
-    line-height:40px;
-    font-size:40px;
-    margin:0;
-    opacity:0;
+    .bay {
+        display: block;
+        width: 100px;
+        height: 190px;
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEwMnB4IiBoZWlnaHQ9IjE4NnB4Ig0KCSB2aWV3Qm94PSIwIDAgMTAyIDE4NiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAyIDE4NiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8dGl0bGU+YmVpPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9IlBhZ2UtMSIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+DQoJDQoJCTxnIGlkPSJiZWkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ3LjA1NTA0MiwgOTkuMzcyNTM0KSByb3RhdGUoLTEwLjAwMDAwMCkgdHJhbnNsYXRlKC00Ny4wNTUwNDIsIC05OS4zNzI1MzQpICIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+DQoJCQ0KCQkJPHJhZGlhbEdyYWRpZW50IGlkPSJwYXRoLTJfMl8iIGN4PSItMjUxLjgyNjciIGN5PSI0ODcuNjcxOSIgcj0iMS4wMDIiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoODkuNzI1OSAtMTUuODIxMSAtMzIuNTExIC0xODQuMzc4OCAzODQ4MC43ODUyIDg1OTM5LjU3ODEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQoJCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojQkEwMDAwIi8+DQoJCQk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojRkYwMDAwIi8+DQoJCTwvcmFkaWFsR3JhZGllbnQ+DQoJCTxwYXRoIGlkPSJwYXRoLTJfMV8iIGZpbGw9InVybCgjcGF0aC0yXzJfKSIgZD0iTTMuMDA5LDExMS4yMzVDMTkuMDY5LDE4MS4wMDEsOTcsMTg3LDEwMS41NjksMTg0Ljc0Mg0KCQkJQzEwNiwxODIsNzEuMDczLDExMC40NTEsNzEsODdDNjcuNTQ2LDY3LjQxLDg0LDcsNzQuMTk1LDAuN0M2NC4zOS01LjYtMTMuMDUxLDQxLjQ3LDMuMDA5LDExMS4yMzV6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=);
+        background-repeat: no-repeat;
+ 
+    }
 }
-
-// keyframes
-@include keyframesMixin(I,      22px,  139px);
-@include keyframesMixin(II,    100px,  100px);
-@include keyframesMixin(III,   139px,   22px);
-@include keyframesMixin(IV,    126px,  -64px);
-@include keyframesMixin(V,      64px, -126px);
-@include keyframesMixin(VI,    -22px, -139px);
-@include keyframesMixin(VII,  -100px, -100px);
-@include keyframesMixin(VIII, -139px,  -22px);
-@include keyframesMixin(IX,   -126px,   64px);
-@include keyframesMixin(X,     -64px,  126px);
