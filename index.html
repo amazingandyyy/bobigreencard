@@ -11,12 +11,17 @@
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/twemigration.webflow.css">
   <link rel="stylesheet" type="text/css" href="css/brabay.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/timeline1.css">
   <script type="text/javascript" src="js/modernizr.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-animate.min.js"></script>
+  <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
 </head>
-<body>
-  <div class="w-section first-section">
+<body data-ng-app="hackathon">
+  <div class="w-section first-section" ng-controller="hackathonCtrl as ctrl">
     <div class="w-row">
       <div class="w-col w-col-4"></div>
       <div class="w-col w-col-4">
@@ -30,26 +35,26 @@
               <option value="placeholder" disabled='disabled' selected='selected'>現在身份</option>
               <option value="F1">學生（F1 - 學生簽）</option>
               <option value="L1">專業人士（L1 - 公司內調簽）</option>
-              <option value="L1">專業人士配偶（L2 - 公司內調配偶簽）</option>
+              <option value="L2">專業人士配偶（L2 - 公司內調配偶簽）</option>
               <option value="OPT">畢業後實習（OPT - 畢業後實習簽）</option>
               <option value="H1B">工作簽（H1B - 工作簽）</option>
               <option value="E">想來創業（E1/E2 - 創業簽）</option>
-              <option value="E">想來投資（投資簽）</option>
+              <option value="I">想來投資（投資簽）</option>
             </select>
-            <select class="w-input" id="education">
+            <select class="w-input" id="education" ng-model="ctrl.user.education">
               <option value="placeholder" disabled='disabled' selected='selected'>學歷</option>
               <option value="high_school">高中/職與以下</option>
               <option value="college">大專</option>
               <option value="master">碩士</option>
               <option value="phd">博士或以上</option>
             </select>
-            <select class="w-input" id="experience">
+            <select class="w-input" id="experience" ng-model="ctrl.user.experience">
               <option value="placeholder" disabled='disabled' selected='selected'>工作經驗</option>
-              <option value="5">五年以下</option>
-              <option value="5+">五年以上</option>
+              <option value="under_5">五年以下</option>
+              <option value="over_5">五年以上</option>
               <option value="management">管理階層</option>
             </select>
-            <select class="w-input" id="nationality">
+            <select class="w-input" id="nationality" ng-model="ctrl.user.nationality">
               <option value="placeholder" disabled='disabled' selected='selected'>國籍</option>
               <option value="taiwan">台灣</option>
               <option value="china">中國</option>
@@ -58,7 +63,7 @@
               <option value="mexico">墨西哥</option>
               <option value="others">其他</option>
             </select>
-            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" data-wait="Please wait...">
+            <input class="w-button submit-button" id="submitBtn" type="submit" value="擲杯" data-wait="Please wait..." ng-disabled="ctrl.isSubmitting" ng-click="ctrl.submit()">
             <div id="brabayContainer">
                 <p class="bay"></p>
                 <p class="bay mirror"></p>
@@ -75,7 +80,7 @@
       <div class="w-col w-col-4"></div>
     </div>
   </div>
-  <div class="w-section timeline-section">
+  <!--<div class="w-section timeline-section">
     <div class="w-container">
       <div class="timeline-circle"></div>
     </div>
@@ -95,9 +100,41 @@
   <div class="w-section greencard-section">
     <div class="green-card"></div>
   </div>
+<<<<<<< HEAD
   <script type="text/javascript" src="js/jquery.min.js"></script>
+
+  -->
+  <ul class="timeline">
+
+    <!-- Item 1 -->
+    <li>
+      <div class="direction-r">
+        <div class="flag-wrapper">
+          <span class="flag">PERM</span>
+          <span class="time-wrapper"><span class="time">3 - 6 months</span></span>
+        </div>
+        <div class="desc">a hairstyle produced by setting the hair in waves or curls and then treating it with chemicals so that the style lasts for several months.</div>
+      </div>
+    </li>
+
+    <!-- Item 2 -->
+    <li>
+      <div class="direction-l">
+        <div class="flag-wrapper">
+          <span class="flag">I-140</span>
+          <span class="time-wrapper"><span class="time">Up to 6 months</span></span>
+        </div>
+        <div class="desc">The employer applies on the alien's behalf to obtain a visa number</div>
+   0
+    </li>
+
+  </ul>
+
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+<<<<<<< HEAD
   <script type="text/javascript">
         var submitBtn = $("#submitBtn"),
             brabayAnimation = function() {
@@ -111,5 +148,8 @@
             }
             submitBtn.click(brabayAnimation);
   </script>
+=======
+  <script type="text/javascript" src="js/hackathon.js"></script>
+>>>>>>> 3716687d296e166be476c58e4c80901403f59640
 </body>
 </html>

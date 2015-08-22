@@ -54,9 +54,9 @@
                 $("#brabayContainer .bay").each(function(idx, elm){
                     var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'],
                         className = aniArr[Math.floor(Math.random() * aniArr.length)];
-
-                    className = ($(elm).hasClass('mirror')) ? className + '-mirror' : className;
-                    $(elm).addClass(className);
+                    
+                    className = ($(elm).hasClass('mirror')) ? className + '-mirror mirror bay' : className + ' bay';
+                    $(elm).removeClass().addClass(className);
                 }); 
             }
             submitBtn.click(brabayAnimation);
