@@ -22,29 +22,20 @@
             -webkit-transform: rotateZ(197deg) translate3d(25px, -28px, 0) scale(1.5, 1.5);
             transform: rotateZ(197deg) translate3d(25px, -28px, 0) scale(1.5, 1.5);
         }
-
-
-        &.head-1 {
-        }
-        &.tail-1 {
-            animation-name: tail1;
-        }
     }
 }
 
-
-
-
 // final scale = 1,1 
-@mixin bayMixin ($name) {
+@mixin bayMixin ($name, $initDeg, $midRot, $finalDeg ) {
     @keyframes #{$name} {
-        from { transform: rotateZ(17deg) scale(1.5, 1.5); }
-        50%  { transform: rotateZ(17deg) rotateX(270deg) scale(1.25, 1.25); }
-        to   { transform: rotateZ(25deg) scale(1, 1); }
+        from { transform: rotateZ($initDeg) scale(1.5, 1.5); }
+        60%  { transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
+        to   { transform: rotateZ($finalDeg) scale(1, 1); }
     }
     @-webkit-keyframes #{$name} {
-        from { -webkit-transform: rotateZ(17deg) scale(1.5, 1.5); }
-        to   { -webkit-transform: rotateZ(25deg) scale(1, 1); }
+        from { -webkit-transform: rotateZ($initDeg) scale(1.5, 1.5); }
+        60%  { -webkit-transform: rotateZ($initDeg) rotateX($midRot) scale(1.25, 1.25); }
+        to   { -webkit-transform: rotateZ($finalDeg) scale(1, 1); }
     }
     
     #brabayContainer .#{$name} {
@@ -52,15 +43,30 @@
         -webkit-animation-duration: 1s;
         -webkit-animation-iteration-count: 1;
         -webkit-animation-fill-mode: forwards;
+        -webkit-animation-timing-function: cubic-bezier(0.7, 0.22, 0.725, 0.61);
         animation-name: $name;
         animation-duration: 1s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.7, 0.22, 0.725, 0.61);
+
     }
 }
 
 
-@include bayMixin(head1);
-
-
-
+@include bayMixin(head1, 17deg, 270deg,  25deg);
+@include bayMixin(head2, 16deg, 220deg,  37deg);
+@include bayMixin(head3, 18deg, -180deg, 42deg);
+@include bayMixin(head4, 19deg, 120deg,  63deg);
+@include bayMixin(tail1, 17deg, 230deg,  77deg);
+@include bayMixin(tail2, 18deg, -170deg, 89deg);
+@include bayMixin(tail3, 17deg, -200deg, 92deg);
+@include bayMixin(tail4, 16deg, -70deg,  99deg);
+@include bayMixin(head1-mirror, 197deg, 370deg,  145deg);
+@include bayMixin(head2-mirror, 196deg, 120deg,  137deg);
+@include bayMixin(head3-mirror, 198deg, -180deg, 242deg);
+@include bayMixin(head4-mirror, 199deg, 320deg,  163deg);
+@include bayMixin(tail1-mirror, 197deg, 230deg,  277deg);
+@include bayMixin(tail2-mirror, 198deg, -170deg, 189deg);
+@include bayMixin(tail3-mirror, 197deg, -200deg, 192deg);
+@include bayMixin(tail4-mirror, 196deg, -70deg,  299deg);
