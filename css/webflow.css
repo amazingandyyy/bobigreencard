@@ -131,7 +131,7 @@ input[type="reset"],
 input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
-  outlint: none;
+  outline: none;
 }
 .w-form {
   margin: 0 0 15px;
