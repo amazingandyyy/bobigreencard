@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="102px" height="186px" viewBox="0 0 102 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>bei</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="100%" id="radialGradient-1">
+            <stop stop-color="#BA0000" offset="0%"></stop>
+            <stop stop-color="#FF0000" offset="100%"></stop>
+        </radialGradient>
+        <path id="path-2" d="M1.61817654,103.406411 C5.31963213,174.900966 81.024874,194.341593 85.9167209,192.911853 C90.7563847,190.980388 68.7846868,114.453414 72.7846872,91.3459617 C72.7846868,71.4534141 99.479046,14.8187715 90.9167224,6.91185682 C82.3543988,-0.995057881 -2.08327905,31.9118561 1.61817654,103.406411 Z"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <mask id="mask-3" sketch:name="bei" fill="white">
+            <use xlink:href="#path-2"></use>
+        </mask>
+        <use id="bei" fill="url(#radialGradient-1)" sketch:type="MSShapeGroup" transform="translate(47.055042, 99.372534) rotate(-10.000000) translate(-47.055042, -99.372534) " xlink:href="#path-2"></use>
+    </g>
+</svg>
