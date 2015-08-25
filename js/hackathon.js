@@ -59,7 +59,7 @@ UserStatus = {
     I: 'I'
 };
 
-/** @type {string} */
+/** @enum {string} */
 UserEducation = {
     HIGH_SCHOOL: 'high_school',
     COLLEGE: 'college',
@@ -111,22 +111,84 @@ User.prototype.gcI485 = null;
 
 
 
-var hackathon = angular.module('hackathon', ['ngSanitize', 'ngAnimate']);
-
 /** @constructor */
-HackathonController = function($scope, $q) {};
+HackathonController = function($rootScope, $scope, $q, $location, $anchorScroll, $timeout) {
+    this.$rootScope = $rootScope;
+    this.$scope = $scope;
+    this.$q = $q;
+    this.$location = $location;
+    this.$anchorScroll = $anchorScroll;
+    this.$timeout = $timeout;
+
+    this.user = new User();
+    this.isSubmitting = false;
+    this.hasSubmitted = false;
+    this.animated = false;
+    this.timelineData = [];
+
+    this.$scope.data = {
+        started: false,
+        animated: false
+    };
+
+    var reset = function() {
+        this.isSubmitting = false;
+        this.animated = false;
+
+        this.$scope.data.started = false;
+        this.$scope.data.animated = false;
+    }.bind(this);
+
+    this.$scope.$watch('data.animated', function(newValue, oldValue) {
+        if (newValue === oldValue) {
+            return;
+        }
+
+        if (newValue === true) {
+            this.animated = newValue;
+            this.$location.hash('timeline');
+            this.$anchorScroll();
+        }
+    }.bind(this));
+
+    this.$rootScope.$on('$locationChangeSuccess', function(angularEvent, newUrl, oldUrl) {
+        var hash = this.$location.hash();
+
+        if (hash.length === 0) {
+            return;
+        }
+
+        if (!this.isSubmitting && !this.hasSubmitted) {
+            this.$location.hash('');
+        }
+
+        reset();
+    }.bind(this));
+};
+/** @type {angular.Scope} */
+HackathonController.prototype.$rootScope;
+/** @type {angular.Scope} */
+HackathonController.prototype.$scope;
+/** @type {angular.$q} */
+HackathonController.prototype.$q;
+/** @type {angular.$location} */
+HackathonController.prototype.$location;
+/** @type {angular.$anchorScroll} */
+HackathonController.prototype.$anchorScroll;
+/** @type {angular.$timeout} */
+HackathonController.prototype.$timeout;
 /** @type {User} */
-HackathonController.prototype.user = new User();
+HackathonController.prototype.user;
 /** @type {boolean} */
-HackathonController.prototype.isSubmitting = false;
-/** @type {string} */
-HackathonController.prototype.css = '';
-/** @type {string} */
-HackathonController.prototype.cssMirror = '';
-
-HackathonController.prototype.timelineData = [];
-
-HackathonController.prototype.greencard = function(user) {
+HackathonController.prototype.isSubmitting;
+/** @type {boolean} */
+HackathonController.prototype.hasSubmitted;
+/** @type {boolean} */
+HackathonController.prototype.animated;
+/** @type {Array} */
+HackathonController.prototype.timelineData;
+/** @returns {Array} */
+HackathonController.prototype.greenCardData = function(user) {
     var education = user.education;
     var experience = user.experience;
     var nationality = user.nationality;
@@ -175,9 +237,9 @@ HackathonController.prototype.greencard = function(user) {
     });
 
     return results;
-}
-
-HackathonController.prototype.visa = function() {
+};
+/** @returns {Array} */
+HackathonController.prototype.visaData = function() {
     var result = [];
     
     switch (this.user.status) {
@@ -188,6 +250,7 @@ HackathonController.prototype.visa = function() {
                 "processing_time":"1個月",
                 "description":"畢業時申請，可立即工作"
             });
+            break;
         case 'OPT':
             console.log("OPT");
             result.push({
@@ -195,46 +258,145 @@ HackathonController.prototype.visa = function() {
                 "processing_time":"4 到 6 個月",
                 "description":"每年4年接受申請，10月開始工作"
             });
+            break;
     }
     return result;
-}
-
+};
 /** @type {Function} */
 HackathonController.prototype.submit = function() {
-    if (this.isSubmitting) {
-        return;
-    }
+    this.$location.hash('');
+
+    // current visa needed
+    // green card kick-off
+    this.timelineData = this.visaData(this.user).concat(this.greenCardData(this.user));
 
     this.isSubmitting = true;
-    console.log(this.user);
-    this.isSubmitting = false;
+    this.hasSubmitted = true;
+    this.animated = false;
 
-    var timeline = HackathonController.prototype.greencard(this.user);
-
-    var aniArr = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
-    var css = aniArr[Math.floor(Math.random() * aniArr.length)];
-    var cssMirror = aniArr[Math.floor(Math.random() * aniArr.length)];
-    // current visa needed
-
-    // green card kick-off
-
-    this.timelineData = this.visa().concat(this.greencard(this.user));
-
-    this.css = css;
-    this.cssMirror = cssMirror + '-mirror';
+    this.$scope.data.started = true;
+    this.$scope.data.animated = false;
 };
 
-hackathon.controller('hackathonCtrl', ['$scope', '$q', HackathonController]);
+/** @returns {Object} */
+HackathonAnimateDirective = function($animate) {
+    var classeNames = ['head1', 'head2', 'head3', 'head4', 'tail1', 'tail2', 'tail3', 'tail4'];
 
-//hackathon.directive('hackathonDir', [function() {
+    function getRandomClassName() {
+        return classeNames[Math.floor(Math.random() * classeNames.length)];
+    }
+
+    function link(scope, element, attrs) {
+        var postfix = attrs.animateClassPostfix;
+
+        scope.$watch('data.started', function(newValue, oldValue) {
+            if (newValue === oldValue || newValue === false) {
+                return;
+            }
+
+            classeNames.forEach(function(className) {
+                if (element.hasClass(className + postfix)) {
+                    element.removeClass(className + postfix);
+                }
+            });
+
+            $animate.addClass(element, getRandomClassName() + postfix);
+        });
+
+        $animate.on('addClass', element, function(element, phase) {
+            if (scope.data.animated) {
+                return;
+            }
+
+            scope.$apply(function() {
+                if (phase === 'close') {
+                    scope.data.animated = true;
+                }
+            });
+        });
+    }
+
+    return {
+        restrict: 'A',
+        link: link
+    };
+};
+
+///** @constructor */
+//HackathonAnimation = function($animateCss) {
 //    return {
-//        'require': 'A',
-//        'link': function(scope, element, attrs, ctrls) {
-//
+//        enter: function(element, doneFn) {
 //        }
 //    };
+//};
+
+
+/** @type {Object} */
+Hackathon = {};
+/** @enum {string} */
+Hackathon.Module = {
+    HACKATHON_APP: 'hackathonApp',
+    NG_SANITIZE: 'ngSanitize',
+    NG_ANIMATE: 'ngAnimate'
+};
+/** @enum {string} */
+Hackathon.AngularService = {
+    $ROOT_SCOPE: '$rootScope',
+    $SCOPE: '$scope',
+    $Q: '$q',
+    $LOCATION: '$location',
+    $ANCHOR_SCROLL: '$anchorScroll',
+    $ANIMATE: '$animate',
+    $ANIMATE_CSS: '$animateCss',
+    $TIMEOUT: '$timeout'
+};
+/** @enum {string} */
+Hackathon.AngularProvider = {
+    $LOCATION_PROVIDER: '$locationProvider'
+};
+/** @enum {string} */
+Hackathon.Controller = {
+    HACKATHON_CTRL: 'hackathonCtrl'
+};
+/** @enum {string} */
+Hackathon.Directive = {
+    HACKATHON_ANIMATE: 'hackathonAnimate'
+};
+/** @enum {string} */
+Hackathon.Animation = {
+    HACKATHON_ANIMATION: '.hackathonAnimate'
+};
+
+
+var module = angular.module(Hackathon.Module.HACKATHON_APP, [Hackathon.Module.NG_SANITIZE, Hackathon.Module.NG_ANIMATE]);
+
+//module.config([Hackathon.AngularProvider.$LOCATION_PROVIDER, function($locationProvider) {
+//    $locationProvider.html5Mode({
+//        enabled: true,
+//        requireBase: false
+//    });
 //}]);
 
+module.controller(Hackathon.Controller.HACKATHON_CTRL, [
+    Hackathon.AngularService.$ROOT_SCOPE,
+    Hackathon.AngularService.$SCOPE,
+    Hackathon.AngularService.$Q,
+    Hackathon.AngularService.$LOCATION,
+    Hackathon.AngularService.$ANCHOR_SCROLL,
+    Hackathon.AngularService.$TIMEOUT,
+    HackathonController
+]);
+
+module.directive(Hackathon.Directive.HACKATHON_ANIMATE, [
+    Hackathon.AngularService.$ANIMATE,
+    HackathonAnimateDirective
+]);
+
+//module.animation(Hackathon.Animation.HACKATHON_ANIMATION, [
+//    Hackathon.AngularService.$ANIMATE_CSS,
+//    HackathonAnimation
+//]);
+
 angular.element(document).ready(function() {
-    angular.bootstrap(document, ['hackathon']);
+    angular.bootstrap(document, [Hackathon.Module.HACKATHON_APP]);
 });
