@@ -1,2 +1,7 @@
 # JetBrains IDEs
 .idea/
+.idea/*
+
+# mac files
+.DS_Store
+js/.DS_Store
