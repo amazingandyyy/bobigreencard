@@ -15,6 +15,7 @@
   <link rel="stylesheet" type="text/css" href="css/timeline1.css">
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <script type="text/javascript" src="js/papaparse.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
   <script type="text/javascript" src="js/angular-animate.min.js"></script>
   <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
@@ -84,7 +85,7 @@
       <div ng-class="{'direction-l': $odd, 'direction-r': $even}">
         <div class="flag-wrapper">
           <span class="flag">{{timeline.title}}</span>
-          <span class="time-wrapper"><span class="time">{{timeline.processing_time}}</span></span>
+          <span class="time-wrapper"><span class="time">{{ctrl.getProcessingTimeText(timeline)}}</span></span>
         </div>
         <div class="desc">{{timeline.description}}</div>
       </div>

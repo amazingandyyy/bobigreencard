@@ -124,6 +124,7 @@ HackathonController = function($rootScope, $scope, $q, $location, $anchorScroll,
     this.isSubmitting = false;
     this.hasSubmitted = false;
     this.animated = false;
+    this.allData = {};
     this.timelineData = [];
 
     this.$scope.data = {
@@ -164,6 +165,8 @@ HackathonController = function($rootScope, $scope, $q, $location, $anchorScroll,
 
         reset();
     }.bind(this));
+
+    this.parseCSV();
 };
 /** @type {angular.Scope} */
 HackathonController.prototype.$rootScope;
@@ -185,90 +188,122 @@ HackathonController.prototype.isSubmitting;
 HackathonController.prototype.hasSubmitted;
 /** @type {boolean} */
 HackathonController.prototype.animated;
+/** @type {Object.<Array>} */
+HackathonController.prototype.allData;
 /** @type {Array} */
 HackathonController.prototype.timelineData;
-/** @returns {Array} */
-HackathonController.prototype.greenCardData = function(user) {
-    var education = user.education;
-    var experience = user.experience;
-    var nationality = user.nationality;
 
-    var results = [];
-    results.push({  
-         "title":"綠卡 - PERM - 蒐集資料給律師",
-         "processing_time":"看人，約 1 個月",
-         "description":"蒐集之前學歷，經歷資訊，與先前經歷的推薦信。"
+
+HackathonController.prototype.parseCSV = function() {
+    var self = this;
+
+    Object.getOwnPropertyNames(UserStatus).forEach(function(statusKey) {
+        self.allData[UserStatus[statusKey]] = [];
     });
 
-    results.push({  
-         "title":"綠卡 - PERM - Laber Certification",
-         "processing_time":"1 到 3 個月",
-         "description":"把預定工作內容丟給勞工局，申請綠卡職缺的 Laber Certification"
-    });
+    var completeHandler = function(resultsObj) {
+        console.log('Parsed successfully');
+        console.log(resultsObj);
 
-    results.push({  
-         "title":"綠卡 - PERM - Recruiting",
-         "processing_time":"4 到 6 個月",
-         "description":"公司公告勞工局核可之職缺資訊，在公開人力市場徵才"
-    });
+        resultsObj.data.forEach(function(result) {
+            self.allData[result.status].push(result);
+        });
 
-    results.push({  
-         "title":"綠卡 - PERM - 送件",
-         "processing_time":"6 個月",
-         "description":"律師送出 PERM 的申請書"
-    });
+        Object.getOwnPropertyNames(self.allData).forEach(function(statusArray) {
+            self.allData[statusArray].sort(function(element1, element2) {
+                return parseInt(element1.index, 10) - parseInt(element2.index, 10);
+            });
+        });
+    };
 
-    results.push({  
-         "title":"綠卡 - PERM - 稽核（不一定會發生）",
-         "processing_time":"6 到 9 個月",
-         "description":"有約 30% 的機率被勞工局稽核到，如果被稽核到，PERM 的時程會延長 6 到 9 個月"
-    });
+    var errorHandler = function(errorObj) {
+        console.log('Failed to parse!');
+        console.log(errorObj);
+    };
 
-    results.push({
-         "title":"綠卡 - I-140",
-         "processing_time":"3 到 6 個月",
-         "description":"通過後，配偶就可以工作了"
-    });
+    var url = '../data/data.csv';
+    var config = {
+        delimiter: ',',
+        newline: '',
+        header: true,
+        worker: true,
+        download: true,
+        complete: completeHandler,
+        error: errorHandler
+    };
 
-    results.push({  
-         "title":"綠卡 - I-485",
-         "processing_time":"3 到 6 個月",
-         "description":"通過後就有綠卡了"
-    });
-
-    return results;
+    Papa.parse(url, config);
 };
+
 /** @returns {Array} */
-HackathonController.prototype.visaData = function() {
-    var result = [];
-    
-    switch (this.user.status) {
-        case 'F1':
-            console.log("F1");
-            result.push({
-                "title":"簽證 - OPT - 實習",
-                "processing_time":"1個月",
-                "description":"畢業時申請，可立即工作"
-            });
+HackathonController.prototype.processVisaSteps = function(user) {
+    var self = this;
+    var steps = [];
+
+    console.log(user.status);
+    var requiredStatuses = [];
+
+    switch (user.status) {
+        case UserStatus.F1:
+            requiredStatuses.push(UserStatus.F1);
+            requiredStatuses.push(UserStatus.OPT);
             break;
-        case 'OPT':
-            console.log("OPT");
-            result.push({
-                "title":"簽證 - H1b - 工作",
-                "processing_time":"4 到 6 個月",
-                "description":"每年4年接受申請，10月開始工作"
-            });
+        case UserStatus.OPT:
+            requiredStatuses.push(UserStatus.OPT);
             break;
     }
-    return result;
+
+    requiredStatuses.forEach(function(status) {
+        self.allData[status].forEach(function(step) {
+            steps.push(step);
+        });
+    });
+
+    return steps;
 };
+
+/** @returns {Array} */
+HackathonController.prototype.processGreenCardSteps = function(user) {
+    var self = this;
+    var steps = [];
+
+    console.log(user.status);
+    var requiredStatuses = [];
+
+    switch (user.status) {
+        default:
+            requiredStatuses.push(UserStatus.H1B);
+            break;
+    }
+
+    requiredStatuses.forEach(function(status) {
+        self.allData[status].forEach(function(step) {
+            steps.push(step);
+        });
+    });
+
+    return steps;
+};
+
+/** @type {Function} */
+HackathonController.prototype.getProcessingTimeText = function(timeline) {
+    var minMonths = parseInt(timeline.processingTimeMin, 10);
+    var maxMonths = parseInt(timeline.processingTimeMax, 10);
+
+    if (minMonths === maxMonths) {
+        return maxMonths + ' 個月';
+    } else {
+        return minMonths + ' 到 ' + maxMonths + ' 個月';
+    }
+};
+
 /** @type {Function} */
 HackathonController.prototype.submit = function() {
     this.$location.hash('');
 
     // current visa needed
     // green card kick-off
-    this.timelineData = this.visaData(this.user).concat(this.greenCardData(this.user));
+    this.timelineData = this.processVisaSteps(this.user).concat(this.processGreenCardSteps(this.user));
 
     this.isSubmitting = true;
     this.hasSubmitted = true;
