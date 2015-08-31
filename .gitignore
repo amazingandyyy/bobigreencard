@@ -2,6 +2,10 @@
 .idea/
 .idea/*
 
+# NPM
+node_modules/
+node_modules/*
+
 # mac files
 .DS_Store
 js/.DS_Store
