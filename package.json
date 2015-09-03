@@ -1,0 +1,9 @@
+{
+  "name": "Placeholder",
+  "description": "Placeholder",
+  "author": "Placeholder <placeholder@placeholder.beta>",
+  "dependencies": {
+    "papaparse": "4.1.x"
+  },
+  "private": true
+}
